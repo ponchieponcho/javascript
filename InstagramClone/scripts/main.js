@@ -1,22 +1,37 @@
-imgArray = ['http://www.femalefirst.co.uk/image-library/square/500/t/the-lord-of-the-rings-fellowship-of-the-ring-quad-1.jpg',
-'http://nerdreactor.com/wp-content/uploads/2017/11/LOTR-500x500_c.png', 
-'https://content-images.p-cdn.com/images/public/int/0/6/0/1/093624811060_500W_500H.jpg',
-'https://cps-static.rovicorp.com/3/JPG_500/MI0000/381/MI0000381791.jpg?partner=allrovi.com'
+imgArray = ['https://yt3.ggpht.com/a-/AJLlDp2Z1S4_t4FFXDJ8GIY8a4u1QrxcB0j3ruoH9w=s900-mo-c-c0xffffffff-rj-k-no',
+'https://c1.staticflickr.com/8/7270/7554426478_da09815d9e_b.jpg', 
+'http://www.freakingnews.com/pictures/105000/Kate-Bosworth-as-Golum-105467.jpg',
+'https://www.northwestfirearms.com/media/golum.1347/full'
 ]
 
 for (var i=0;i<imgArray.length;i++) {
-    var container = document.querySelector(".container"); 
+    //adds images to webpage
     var newImage = document.createElement('img');
     newImage.src = imgArray[i];
+    var container = document.querySelector(".container"); 
     container.appendChild(newImage);
 };
 
 
 for (var a=0;a<imgArray.length;a++) {
-    var clickImage2 = document.querySelectorAll(".container img");
-    clickImage2[a].addEventListener("click", function(){
-        // console.log('You clicked me!');
+    // adds click event to images 
+    var clickImage = document.querySelectorAll(".container img");
+    clickImage[a].addEventListener("click", function(){
         document.getElementById('lightbox').style.display='block';
+        var imageTag = document.createElement('img'); // creates img tag
+        imageTag.src = event.path[0].currentSrc; // gets url of clicked image
+        var container = document.querySelector('.lightbox-image'); //gets location for .lightbox-image
+        container.appendChild(imageTag); //adds image to div with lightbox-image class
     });
-}
-    
+
+    // adds click event to lightbox
+    var lightboxDiv = document.getElementById('lightbox')
+    lightboxDiv.addEventListener("click", function(){
+        document.getElementById('lightbox').style.display='none';
+        var container = document.querySelector('.lightbox-image');
+        var images = document.querySelector('img');
+        container.removeChild(images);
+
+    });
+};
+
