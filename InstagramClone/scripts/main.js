@@ -22,6 +22,8 @@ for (var a=0;a<imgArray.length;a++) {
         imageTag.src = event.path[0].currentSrc; // gets url of clicked image
         var container = document.querySelector('.lightbox-image'); //gets location for .lightbox-image
         container.appendChild(imageTag); //adds image to div with lightbox-image class
+        var aPrev = document.getElementById('previous');
+        aPrev.href = imgArray[a-1];
     });
 
     // adds click event to lightbox
@@ -31,7 +33,15 @@ for (var a=0;a<imgArray.length;a++) {
         var container = document.querySelector('.lightbox-image');
         var images = document.querySelector('img');
         container.removeChild(images);
-
+        
     });
+};
+
+
+function prevImage() {
+    var aPrev = document.getElementById('previous'); //finds previous arrow
+    var imgLen = imgArray.length; // 
+    aPrev.href = imgArray[i-1];// sets previous image src in the array
+
 };
 
